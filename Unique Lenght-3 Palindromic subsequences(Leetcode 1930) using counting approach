@@ -1,0 +1,23 @@
+class Solution {
+    public int countPalindromicSubsequence(String s) {
+        int n=s.length();
+        char[] ch=s.toCharArray();
+        int ans=0;
+        Set<Character> set1=new HashSet<>();
+        for(int i=0;i<n;i++){
+            if(set1.contains(ch[i]))
+                continue;
+            int min=i;
+            for(int j=i+1;j<n;j++){
+                if(ch[i]==ch[j])
+                    min=j;
+            }
+            Set<Character> set=new HashSet<>();
+            for(int l=i+1;l<min;l++)
+                set.add(ch[l]);
+            ans+=set.size();
+            set1.add(ch[i]);
+        }
+        return ans;
+    }
+}
